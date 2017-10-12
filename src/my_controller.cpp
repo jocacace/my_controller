@@ -35,10 +35,15 @@
 namespace my_controller_ns {
 
 //Controller initialization
-  bool MyControllerClass::init(hardware_interface::PositionJointInterface* hw, ros::NodeHandle &n)
+  bool MyControllerClass::init(hardware_interface::PositionJointInterface* hw, ros::NodeHandle &nh)
   {
-		// get the joint object to control
-    joint_ = hw->getHandle("shoulder_pan_joint"); 
+		//Retrieve the joint object to control
+		std::string joint_name;
+		if( !nh.getParam( "joint_name", joint_name ) ) {
+			ROS_ERROR("No joint_name specified");
+			return false;
+		}
+    joint_ = hw->getHandle(joint_name); 
     return true;
   }
 
