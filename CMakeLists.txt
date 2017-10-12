@@ -20,7 +20,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-catkin_package( INCLUDE_DIRS include 
+catkin_package( INCLUDE_DIRS src 
 	LIBRARIES my_controller  
 	CATKIN_DEPENDS pluginlib roscpp
   DEPENDS Boost
